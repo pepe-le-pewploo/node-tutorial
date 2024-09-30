@@ -12,3 +12,5 @@ console.log(__filename);
 setInterval(() => {
   console.log("hey");
 }, 1000);
+
+//setTimeout
