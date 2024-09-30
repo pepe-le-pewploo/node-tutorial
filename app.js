@@ -1,29 +1,15 @@
-const {readFile, writeFile} = require('fs') //destructuring
+const {readFileSync, writeFileSync} = require('fs') //destructuring
 
-readFile('./content/first.txt', 'utf8', (err,result) => {
-  if(err) {
-    console.log(err)
-    return;
-  }
-  //console.log(result);
-  const first = result;
-  readFile('./content/second.txt', 'utf8', (err,result) => {
-    if(err) {
-      console.log(err);
-      return;
-    }
-    const second = result;
-    writeFile(
-      './content/third-async.txt',
-      `Here is the result: ${first}, ${second}`,
-      {flag: 'a'},
-      (err, result) => {
-        if(err) {
-          console.log(err)
-          return;
-        }
-        console.log(result);
-      }
-    )
-  })
-})
+const first = readFileSync('./content/first.txt', 'utf8');
+const second = readFileSync('./content/second.txt', 'utf8');
+
+//console.log(first, second);
+
+writeFileSync('./content/third-sync.txt', `Here is the third: ${first}, ${second}`);
+// writeFileSync('./content/third-sync.txt', `Hello world`); // overwrite everything
+writeFileSync(
+ './content/third-sync.txt',
+  `. 
+Hello World`,
+   { flag: 'a'}
+ ); //append, not overwrite
