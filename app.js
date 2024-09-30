@@ -1,14 +1,19 @@
-//GLOBALS - NO WINDOW!!!
+//Modules - Encapsulated Code (only share minimum)
+//CommonJS, every file is module (by default)
+//const names = require('./3-names');
 
-// __dirname - path to current directory
-// __filename - file name
-// require - function to use modules (CommonJS)
-// module - info about current module(file)
-// process - info about environment where the program is being executed
+const {peter, john} = require('./3-names');
 
-console.log(__dirname);
-console.log(__filename);
+const sayHi = require('./3-utils');
 
-setInterval(() => {
-  console.log("hey");
-}, 1000);
+const data = require('./3-alternative-flavour');
+const { findDifference } = require('./3-mind-grenade');
+require('./3-mind-grenade');
+//console.log(data);
+//console.log(names);
+//findDifference(); -> does not work, export
+
+
+sayHi('Susan');
+sayHi(peter);
+sayHi(john); // alternative of destructuring = names.john, names.peter
