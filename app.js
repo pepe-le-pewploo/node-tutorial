@@ -1,23 +1,89 @@
-// npm - global command, comes with node
-// npm --version
+const {readFile, writeFile, read} = require('fs').promises;
+// const utils = require('util');
+// const readFilePromise = utils.promisify(readFile);
+// const writeFilePromise = utils.promisify(writeFile);
 
-// local dependency - use it only in this particular project
-// npm i <packageName>
+// const getText = (path) => {
+//   return new Promise((resolve,reject) => {
+//     readFile(path, 'utf8', (err,result) => {
+//       if(err) {
+//         reject(err);
+//       } else {
+//         resolve(result);
+//       }
+//     })
+//   })
+// }
 
-// global dependency - use it in any project
-// npm install -g <packageName>
-// sudo npm install -g <packageName> (mac)
+const getResult = async () => {
+  try {
+    const first = await readFile('./content/first.txt', 'utf-8');
+    const second = await readFile('./content/second.txt', 'utf-8');
+    await writeFile('./content/newFile.txt', `New Data:
+      ${first}
+      ${second}`, {flag: 'a'});
+  
+    console.log(first, second);
+  } catch(error) {
+    console.log(error);
+  }
+}
 
-// package.json - manifest file (stores important info about project/package)
-// manual approach (create package.json "In the root", create properties etc.)
-// npm init (step by step, press enter to skip)
-// npm init -y (everything default)
+getResult();
 
-const _ = require('lodash');
+// const getText = (path) => {
+//   return new Promise((resolve,reject) => {
+//     readFile(path, 'utf8', (err,result) => {
+//       if(err) {
+//         reject(err);
+//       } else {
+//         resolve(result);
+//       }
+//     })
+//   })
+// }
 
-const items = [1,[2,[3,[4]]]];
+// const first = getText('./content/first.txt')
 
-const newItems = _.flattenDeep(items);
+// first.then((data) => console.log(data)).catch((error) => console.log(error))
 
-console.log(newItems); 
-console.log('Muntasir Mamun');
+
+//---------------------------------
+
+
+//const { readFile, writeFile } = require('fs').promises
+// const util = require('util')
+// const readFilePromise = util.promisify(readFile)
+// const writeFilePromise = util.promisify(writeFile)
+
+// const start = async () => {
+//   try {
+//     const first = await readFile('./content/first.txt', 'utf8')
+//     const second = await readFile('./content/second.txt', 'utf8')
+//     await writeFile(
+//       './content/result-mind-grenade.txt',
+//       `THIS IS AWESOME : ${first} ${second}`,
+//       { flag: 'a' }
+//     )
+//     console.log(first, second)
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
+
+// start()
+
+// const getText = (path) => {
+//   return new Promise((resolve, reject) => {
+//     readFile(path, 'utf8', (err, data) => {
+//       if (err) {
+//         reject(err)
+//       } else {
+//         resolve(data)
+//       }
+//     })
+//   })
+// }
+// getText('./content/first.txt')
+//   .then((result) => console.log(result))
+//   .catch((err) => console.log(err))
